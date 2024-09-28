@@ -4,11 +4,32 @@
 
 # Drakenfell Realm - Skill Forge Development Environment for VirtualBox
 
+# Network Configuration
+# Private Network:
+# IP Address: 192.168.56.10
+
 # Port Forwarding (Guest -> Host) Change the values to match your preferences:
-# 22 -> 23
-# 8000 -> 8000
-# 5432 -> 5432
-# 27017 -> 27017
+# 22 -> 23 (SSH)
+# 8000 -> 8000 (Skill Forge)
+# 5432 -> 5432 (PostgreSQL)
+# 27017 -> 27017 (MongoDB)
+# 2000 -> 2000 (Piston API)
+
+# Box Configuration
+# Box: debian/bookworm64 (Debian 12.0)
+
+# Oracle VB Provider Configuration
+# CPU: 2
+# Memory: 8192 MB
+# CPU Execution Cap: 100%
+
+# Provisioning Scripts
+# node-provision.sh Update OS and install auxiliary tools
+# docker-provision.sh Install Docker and Docker Compose
+# postgres-provision.sh Install PostgreSQL and create a database
+# mongo-provision.sh Setup MongoDB replica set
+# piston-provision.sh Install Piston runtime environments
+
 
 
 Vagrant.configure(2) do |config|
@@ -23,7 +44,9 @@ Vagrant.configure(2) do |config|
     node.vm.network "forwarded_port", guest: 8000, host: 8000, auto_correct: true
     node.vm.network "forwarded_port", guest: 5432, host: 5432, auto_correct: true
     node.vm.network "forwarded_port", guest: 27017, host: 27017, auto_correct: true
+    node.vm.network "forwarded_port", guest: 2000, host: 2000, auto_correct: true
 
+    # Disable automatic updates for the vbguest plugin
     if Vagrant.has_plugin?("vagrant-vbguest") then
       config.vbguest.auto_update = false
     end
@@ -40,11 +63,11 @@ Vagrant.configure(2) do |config|
     # Sync the current folder to the VM
     config.vm.synced_folder ".", "/vagrant"
 
-    node.vm.provision "shell", path: "./node-provision.sh", privileged: "true"
-    node.vm.provision "shell", path: "./docker-provision.sh", privileged: "true"
-    node.vm.provision "shell", path: "./postgres-provision.sh", privileged: "true"
-    node.vm.provision "shell", path: "./mongo-provision.sh", privileged: "true"
-
-
+    # Provisioning Scripts
+    node.vm.provision "shell", name: "node-provision", path: "./node-provision.sh", privileged: "true"
+    node.vm.provision "shell", name: "docker-provision", path: "./docker-provision.sh", privileged: "true"
+    node.vm.provision "shell", name: "postgres-provision", path: "./postgres-provision.sh", privileged: "true"
+    node.vm.provision "shell", name: "mongo-provision", path: "./mongo-provision.sh", privileged: "true"
+    node.vm.provision "shell", name: "piston-provision", path: "./piston-provision.sh", privileged: "true"
   end
 end

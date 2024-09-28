@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "dee72dea-04e0-4d89-86d2-90f05b2ef55e",
+		"name": "Piston API Drakenfall",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24631155"
+	},
+	"item": [
+		{
+			"name": "Get Runtimes",
+			"item": [
+				{
+					"name": "Get Installed Runtimes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/runtimes",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"runtimes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Packages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/packages",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"packages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete Runtime",
+			"item": [
+				{
+					"name": "Delete Runtime Env",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"mono\",\n  \"version\": \"*\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/packages",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"packages"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Execute Code",
+			"item": [
+				{
+					"name": "Execute Python Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"py\",\n  \"version\": \"3.12.0\",\n  \"files\": [\n    {\n      \"content\": \"word = input()\\nword_2 = input()\\nprint(word+word_2)\"\n    }\n  ],\n  \"stdin\": \"Hello\\nWorld\",\n  \"args\": [\"hello\", \"world\"],\n  \"compile_timeout\": 10000,\n  \"run_timeout\": 3000,\n  \"compile_memory_limit\": -1,\n  \"run_memory_limit\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/execute",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute CS Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"mono\",\n  \"version\": \"*\",\n  \"files\": [\n    {\n      \"content\": \"namespace Test { class HelloWorld { static void Main(string[] args) {System.Console.WriteLine(\\\"Hello World\\\");}}}\"\n    }\n  ],\n  \"stdin\": \"\",\n  \"args\": \"\",\n  \"compile_timeout\": 10000,\n  \"run_timeout\": 3000,\n  \"compile_memory_limit\": -1,\n  \"run_memory_limit\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/execute",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute JS Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"js\",\n  \"version\": \"20.11.1\",\n  \"files\": [\n    {\n      \"name\": \"user_code.js\",\n      \"content\": \"function solve(a, b) {console.log(a + b);}solve(process.argv[2], process.argv[3]);\"\n    }\n  ],\n  \"stdin\": \"1\\n2\",\n  \"args\": [\"1\", \"2\"],\n  \"compile_timeout\": 10000,\n  \"run_timeout\": 3000,\n  \"compile_memory_limit\": -1,\n  \"run_memory_limit\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/execute",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute CS Code Remote",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"cs\",\n  \"version\": \"*\",\n  \"files\": [\n    {\n      \"content\": \"using System;class Program{static void Main(string[] args){int num1 = Convert.ToInt32(Console.ReadLine());int num2 = Convert.ToInt32(Console.ReadLine());int sum = num1 + num2;Console.WriteLine(sum);}}\"\n    }\n  ],\n  \"stdin\": \"1\\n1\",\n  \"args\": [1, 2],\n  \"compile_timeout\": 10000,\n  \"run_timeout\": 3000,\n  \"compile_memory_limit\": -1,\n  \"run_memory_limit\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://emkc.org/api/v2/piston/execute",
+							"protocol": "https",
+							"host": [
+								"emkc",
+								"org"
+							],
+							"path": [
+								"api",
+								"v2",
+								"piston",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Execute Java Code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"java\",\n  \"version\": \"15.0.2\",\n  \"files\": [\n    {\n      \"content\": \"import java.util.Scanner;\\npublic class Main {public static void main(String[] args) {Scanner scanner = new Scanner(System.in);int a = Integer.parseInt(scanner.nextLine());int b = Integer.parseInt(scanner.nextLine());System.out.print(a + b);}}\"\n    }\n  ],\n  \"stdin\": \"2\\n2\",\n  \"args\": [\"1\", \"2\"],\n  \"compile_timeout\": 10000,\n  \"run_timeout\": 3000,\n  \"compile_memory_limit\": -1,\n  \"run_memory_limit\": -1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/execute",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"execute"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Install Runtime",
+			"item": [
+				{
+					"name": "Install package",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"language\": \"node\",\n  \"version\": \"20.11.1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.56.10:2000/api/v2/packages",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"56",
+								"10"
+							],
+							"port": "2000",
+							"path": [
+								"api",
+								"v2",
+								"packages"
+							],
+							"query": [
+								{
+									"key": "language",
+									"value": "node",
+									"disabled": true
+								},
+								{
+									"key": "version",
+									"value": "15.10.0",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

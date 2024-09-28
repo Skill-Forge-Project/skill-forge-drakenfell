@@ -24,4 +24,8 @@ sudo systemctl enable docker
 sudo systemctl start docker
 
 # Add the current user to the docker group
-sudo usermod -aG docker $USER
+sudo usermod -aG docker vagrant
+
+# Deploy Docker containers
+cd /vagrant
+docker compose up -d

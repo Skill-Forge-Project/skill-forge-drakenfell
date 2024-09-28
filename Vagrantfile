@@ -39,9 +39,12 @@ Vagrant.configure(2) do |config|
 
     # Sync the current folder to the VM
     config.vm.synced_folder ".", "/vagrant"
-    
+
     node.vm.provision "shell", path: "./node-provision.sh", privileged: "true"
     node.vm.provision "shell", path: "./docker-provision.sh", privileged: "true"
     node.vm.provision "shell", path: "./postgres-provision.sh", privileged: "true"
+    node.vm.provision "shell", path: "./mongo-provision.sh", privileged: "true"
+
+
   end
 end

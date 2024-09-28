@@ -1,2 +1,5 @@
 # Ignore vagrant dir
 .vagrant/
+
+# Ignore Obsidian dir
+.obsidian/

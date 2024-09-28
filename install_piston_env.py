@@ -1,11 +1,9 @@
 import requests
 
 # Define the URL
-url = 'http://localhost:2000/api/v2/packages'
+url = 'http://192.168.56.10:2000/api/v2/packages'
 
-
-
-# Install Python 3.12.0
+# Define the json data (language and version)
 data = [
     {
         "language": "python",

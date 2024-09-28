@@ -27,7 +27,7 @@ else
 fi
 
 
-# Setup PostgreSQL (create database, user with root privileges, setup pg_cron scheduler and import data)
+# Setup PostgreSQL (create database, user with root privileges, setup pg_cron scheduler and import demo data)
 sudo -u postgres psql -c "CREATE DATABASE skill_forge_dev;"
 sudo -u postgres psql -c "CREATE USER skill_forge WITH SUPERUSER PASSWORD 'skill_forge';"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE skill_forge_dev TO skill_forge;"
